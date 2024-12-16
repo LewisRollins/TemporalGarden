@@ -9,7 +9,7 @@ end
 function character:begin_overlap(other)
   if get_player() == other then
     print('Begin Overlap')
-    self.flash('Speak with Twinblast')
+    self.flash('Guide')
     current_target = self.owner
   end
 end
@@ -36,9 +36,14 @@ function character:speak()
   end
   
   function page1()
-    open_dialogue('Go to page 2?', {
+    open_dialogue([[
+  Hello Traveller! Welcome to The Temporal Garden. As you can see my home has seen better days. 
+  This island used to a luscious space full of green and life but unfortunately there are only 2 of us left, myself and the merchant over there. 
+  I hate to rush you but the night is coming and your presence will have been noticed by the others. I'd reccomend you get gardening asap,
+  here, use this gold and buy a pot from the merchant, he should have some old equipment laying around.
+    ]], {
       {'Yes', page2},
-      {'No', close},
+      {'Bye', close},
   })
   end
 
@@ -56,13 +61,14 @@ function character:speak()
 This is the last page,
 What do you want to do ?
     ]], {
-      {'Quit Game', quit},
-      {'Close Dialogue', close},      
+      --{'Quit Game', quit},
+      {'Bye', close},      
     })
   end
 
   --called by the 'Speak' event
   page1()
+  self.spawn_bought_item('Gold')
       
 end
 
