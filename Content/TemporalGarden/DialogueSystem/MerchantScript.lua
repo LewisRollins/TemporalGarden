@@ -52,7 +52,7 @@ function merchant:speak()
         if player_gold < item.cost then
             open_dialogue('Not enough gold to buy ' .. item.name .. ' (Cost: ' .. item.cost .. ')', {{'Sorry', show_items}})
         else
-            table.remove(merchant.items, index)
+           -- table.remove(merchant.items, index)
             merchant.gold = merchant.gold + item.cost
             player_gold = player_gold - item.cost
             open_dialogue('You bought ' .. item.name .. ' for ' .. item.cost .. ' gold!', {{'Thanks', show_items}})
